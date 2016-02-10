@@ -1,0 +1,7 @@
+artisan app:name ProjetoX
+artisan key:generate
+artisan make:model Client -m
+touch database/database.sqlite
+artisan migrate
+artisan make:controller ClientController
+artisan make:seeder ClientTableSeeder
