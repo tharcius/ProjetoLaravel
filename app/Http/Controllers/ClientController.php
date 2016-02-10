@@ -2,6 +2,7 @@
 
 namespace ProjetoX\Http\Controllers;
 
+use ProjetoX\Client;
 use Illuminate\Http\Request;
 
 use ProjetoX\Http\Requests;
@@ -22,10 +23,10 @@ class ClientController extends Controller
     }
 
     public function destroy($id){
-        Client::find($id)->delete();
+        return Client::find($id)->delete();
     }
 
     public function update(Request $request, $id){
-        Client::findOrNew($id)->save($request);
+        // Ainda não implmentado
     }
 }
