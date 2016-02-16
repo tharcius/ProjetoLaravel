@@ -23,10 +23,12 @@ class ClientController extends Controller
     }
 
     public function destroy($id){
-        return Client::find($id)->delete();
+        Client::findOrNew($id)->delete() ? $response_array['status'] = 'success' : $response_array['status'] = 'error';
+        return json_encode($response_array);
     }
 
     public function update(Request $request, $id){
-        // Ainda não implmentado
+        Client::findOrNew($id)->update($request->all()) ? $response_array['status'] = 'success' : $response_array['status'] = 'error';
+        return json_encode($response_array);
     }
 }
