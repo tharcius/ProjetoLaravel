@@ -2,25 +2,25 @@
 
 namespace ProjetoX\Http\Controllers;
 
-use ProjetoX\Entities\Client;
-use ProjetoX\Repositories\ClientRepository;
 use Illuminate\Http\Request;
+use ProjetoX\Http\Requests;
+use ProjetoX\Repositories\ProjectRepository;
 
-
-class ClientController extends Controller
+class ProjectController extends Controller
 {
     /**
-     * @var ClientRepository
+     * @var ProjectRepository
      */
-    private $repository;
+    protected $repository;
 
     /**
-     * ClientController constructor.
-     * @param ClientRepository $repository
+     * ProjectController constructor.
+     * @param ProjectRepository $repository
      */
-    public function __construct(ClientRepository $repository){
+    public function __construct(ProjectRepository $repository){
         $this->repository = $repository;
     }
+
 
     public function index(){
         return $this->repository->all();
@@ -35,7 +35,7 @@ class ClientController extends Controller
     }
 
     public function destroy($id){
-        $this->repository->findOrNew($id)->delete() ? $response_array['status'] = 'success' : $response_array['status'] = 'error';
+        $this->repository->find($id)->delete() ? $response_array['status'] = 'success' : $response_array['status'] = 'error';
         return json_encode($response_array);
     }
 
@@ -43,4 +43,5 @@ class ClientController extends Controller
         $this->repository->update($request->all(), $id) ? $response_array['status'] = 'success' : $response_array['status'] = 'error';
         return json_encode($response_array);
     }
+
 }

@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(ProjetoX\User::class, function (Faker\Generator $faker) {
+$factory->define(ProjetoX\Entities\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
@@ -20,7 +20,7 @@ $factory->define(ProjetoX\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(ProjetoX\Client::class, function (Faker\Generator $faker) {
+$factory->define(ProjetoX\Entities\Client::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'responsible' => $faker->name,
@@ -28,5 +28,17 @@ $factory->define(ProjetoX\Client::class, function (Faker\Generator $faker) {
         'phone' => $faker->phoneNumber,
         'address' => $faker->address,
         'obs' => $faker->sentence,
+    ];
+});
+
+$factory->define(ProjetoX\Entities\Project::class, function (Faker\Generator $faker) {
+   return [
+        'name' => $faker->company,
+        'description' => $faker->realText(),
+        'progress' => $faker->sentence,
+        'status' => $faker->word,
+        'due_date' => $faker->dateTime,
+        'client_id' => $faker->randomElement(\ProjetoX\Entities\Client::lists('id')->toArray()),
+        'owner_id' => $faker->randomElement(\ProjetoX\Entities\Client::lists('id')->toArray()),
     ];
 });

@@ -5,3 +5,12 @@ touch database/database.sqlite
 artisan migrate
 artisan make:controller ClientController
 artisan make:seeder ClientTableSeeder
+artisan make:model Project -m
+artisan make:controller ProjectController
+artisan make:seeder ProjectTableSeeder
+artisan migrate
+
+## Instalando o Prettusrepository no projeto
+## https://packagist.org/packages/prettus/l5-repository
+artisan vendor:publish
+artisan make:provider ProjetoXRepositoryProvider
