@@ -4,8 +4,7 @@ namespace ProjetoX\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
-{
+class Project extends Model{
     protected $fillable = [
         'name',
         'description',
@@ -15,4 +14,12 @@ class Project extends Model
         'owner_id',
         'client_id'
     ];
+
+    public function client(){
+        return $this->belongsTo(Client::class);
+    }
+
+    public function owner(){
+        return $this->belongsTo(User::class);
+    }
 }

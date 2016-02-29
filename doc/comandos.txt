@@ -14,3 +14,8 @@ artisan migrate
 ## https://packagist.org/packages/prettus/l5-repository
 artisan vendor:publish
 artisan make:provider ProjetoXRepositoryProvider
+
+## Instalando o Laravel Validation Service no projeto
+## https://packagist.org/packages/prettus/laravel-validation
+composer update prettus/laravel-validation
+artisan make:seeder UserTableSeeder

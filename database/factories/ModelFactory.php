@@ -32,13 +32,13 @@ $factory->define(ProjetoX\Entities\Client::class, function (Faker\Generator $fak
 });
 
 $factory->define(ProjetoX\Entities\Project::class, function (Faker\Generator $faker) {
-   return [
+    return [
         'name' => $faker->company,
         'description' => $faker->realText(),
         'progress' => $faker->sentence,
         'status' => $faker->word,
         'due_date' => $faker->dateTime,
+        'owner_id' => $faker->randomElement(\ProjetoX\Entities\User::lists('id')->toArray()),
         'client_id' => $faker->randomElement(\ProjetoX\Entities\Client::lists('id')->toArray()),
-        'owner_id' => $faker->randomElement(\ProjetoX\Entities\Client::lists('id')->toArray()),
     ];
 });

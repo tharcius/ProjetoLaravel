@@ -2,10 +2,9 @@
 
 namespace ProjetoX\Http\Controllers;
 
-use ProjetoX\Entities\Client;
-use ProjetoX\Repositories\ClientRepository;
 use Illuminate\Http\Request;
-
+use ProjetoX\Repositories\ClientRepository;
+use ProjetoX\Services\ClientService;
 
 class ClientController extends Controller
 {
@@ -15,11 +14,17 @@ class ClientController extends Controller
     private $repository;
 
     /**
+     * @var ClientService
+     */
+    private $service;
+
+    /**
      * ClientController constructor.
      * @param ClientRepository $repository
      */
-    public function __construct(ClientRepository $repository){
+    public function __construct(ClientRepository $repository, ClientService $service){
         $this->repository = $repository;
+        $this->service = $service;
     }
 
     public function index(){
@@ -27,20 +32,18 @@ class ClientController extends Controller
     }
 
     public function store(Request $request){
-        return $this->repository->create($request->all());
+        return $this->service->create($request->all());
     }
 
     public function show($id){
-        return $this->repository->find($id);
+        return $this->service->show($id);
     }
 
     public function destroy($id){
-        $this->repository->findOrNew($id)->delete() ? $response_array['status'] = 'success' : $response_array['status'] = 'error';
-        return json_encode($response_array);
+        return $this->service->destroy($id);
     }
 
     public function update(Request $request, $id){
-        $this->repository->update($request->all(), $id) ? $response_array['status'] = 'success' : $response_array['status'] = 'error';
-        return json_encode($response_array);
+        return $this->service->update($request->all(), $id);
     }
 }
