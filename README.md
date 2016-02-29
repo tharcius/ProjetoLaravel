@@ -7,8 +7,11 @@
 
 
 Project
+
 Nessa fase do projeto, deverá ser criada uma nova entidade chamada Project.
+
 Deverá ser criado o Repository e Service referente a entidade Project, bem como as validações.
+
 Na listagem dos dados, deverá trazer informações sobre o owner_id e client_id.
 
 
@@ -18,8 +21,11 @@ Na listagem dos dados, deverá trazer informações sobre o owner_id e client_id
 
 
 Clients
+
 Nessa fase do projeto, você deverá apresentar um CRUD completo de nosso model Client.
+
 Sempre lembrando que toda a informação resultante deverá ser exibida para o usuário final como um json.
+
 Não se esqueça de utilizar corretamente os verbos HTTP.
 
 
