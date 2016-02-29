@@ -3,6 +3,17 @@
 
 [![Modulos do laravel](http://sites.code.education/wp-content/uploads/2015/06/prog-laravel1.png)](sites.code.education/laravel-com-angularjs/)
 
+## Segunda fase do Projeto
+
+
+Project
+Nessa fase do projeto, deverá ser criada uma nova entidade chamada Project.
+Deverá ser criado o Repository e Service referente a entidade Project, bem como as validações.
+Na listagem dos dados, deverá trazer informações sobre o owner_id e client_id.
+
+
+
+
 ## Primeira fase do Projeto
 
 
