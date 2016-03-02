@@ -16,6 +16,14 @@ Na listagem dos dados, deverá trazer informações sobre o owner_id e client_id
 
 
 
+### Corrreções da segunda fase
+Corrigido a validação da classe cliente
+
+Corrigido as informações do Client e Owner para o index de Project
+
+Alterado o método update para que retorne os dados atualizados e utilize o verbo http PUT, ao invés do POST.
+
+
 
 ## Primeira fase do Projeto
 

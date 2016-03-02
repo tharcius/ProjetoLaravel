@@ -8,6 +8,7 @@
 
 namespace ProjetoX\Services;
 
+use Prettus\Validator\Exceptions\ValidatorException;
 use ProjetoX\Repositories\ClientRepository;
 use ProjetoX\Validators\ClientValidator;
 
@@ -70,8 +71,13 @@ class ClientService{
 
     public function update($data, $id){
         try{
-            $this->repository->update($data, $id) ? $response_array['status'] = 'success' : $response_array['status'] = 'error';
-            return json_encode($response_array);
+            $dados = $this->repository->update($data, $id);
+            if($dados){
+                $response_array = array('status' => 'success', 'client'=>$dados);
+            }else{
+                $response_array['status'] = 'error';
+            }
+            return $response_array;
         } catch (\Exception $e){
             return [
                 'error'=>true,
