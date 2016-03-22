@@ -27,20 +27,28 @@ class ProjectController extends Controller
         $this->service = $service;
     }
 
+    public function destroy($id){
+        return $this->service->destroy($id);
+    }
+
     public function index(){
         return $this->repository->with(['client','owner'])->all();
     }
 
-    public function store(Request $request){
-        return $this->service->create($request->all());
+    public function members($id){
+        return $this->service->members($id);
     }
 
     public function show($id){
         return $this->service->show($id);
     }
 
-    public function destroy($id){
-        return $this->service->destroy($id);
+    public function store(Request $request){
+        return $this->service->create($request->all());
+    }
+
+    public function tasks($id){
+        return $this->service->tasks($id);
     }
 
     public function update(Request $request, $id){

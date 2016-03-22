@@ -3,6 +3,25 @@
 
 [![Modulos do laravel](http://sites.code.education/wp-content/uploads/2015/06/prog-laravel1.png)](sites.code.education/laravel-com-angularjs/)
 
+## Terceira fase do Projeto
+
+
+Project
+
+Nessa fase do projeto, deverá ser criada uma nova entidade chamada ProjectTask e as migrations, seeds, repositories, services para a mesma.
+
+Crie a entidade ProjectMembers e criar o relacionamento com a entidade Project e User para que facilmente possamos ter acesso aos membros de um projeto.
+
+No ProjectService, criar os seguintes métodos:
+
+- addMember: para adicionar um novo member em um projeto
+- removeMember: para remover um membro de um projeto
+- isMember: para verificar se um usuário é membro de um determinado projeto
+
+Criar um endpoint (rota): /project/{id}/members para ter acesso a todos os membros de um projeto.
+
+
+
 ## Segunda fase do Projeto
 
 

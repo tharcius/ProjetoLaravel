@@ -9,6 +9,12 @@ artisan make:model Project -m
 artisan make:controller ProjectController
 artisan make:seeder ProjectTableSeeder
 artisan migrate
+artisan make:migration project_tasks_table
+artisan make:migration project_member_pivot_table
+artisan make:seeder ProjectTaskTableSeeder
+artisan migrate:refresh --seed
+artisan make:controller ProjectTaskController
+
 
 ## Instalando o Prettusrepository no projeto
 ## https://packagist.org/packages/prettus/l5-repository

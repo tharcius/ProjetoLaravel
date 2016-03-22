@@ -35,10 +35,20 @@ $factory->define(ProjetoX\Entities\Project::class, function (Faker\Generator $fa
     return [
         'name' => $faker->company,
         'description' => $faker->realText(),
-        'progress' => $faker->sentence,
-        'status' => $faker->word,
+        'progress' => rand(1,100),
+        'status' => rand(1,5),
         'due_date' => $faker->dateTime,
         'owner_id' => $faker->randomElement(\ProjetoX\Entities\User::lists('id')->toArray()),
         'client_id' => $faker->randomElement(\ProjetoX\Entities\Client::lists('id')->toArray()),
+    ];
+});
+
+$factory->define(ProjetoX\Entities\ProjectTask::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'status' => rand(1,5),
+        'start_date' => $faker->dateTime,
+        'due_date' => $faker->dateTime,
+        'project_id' => $faker->randomElement(\ProjetoX\Entities\Project::lists('id')->toArray()),
     ];
 });

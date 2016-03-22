@@ -4,8 +4,7 @@ namespace ProjetoX\Entities;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable{
     /**
      * The attributes that are mass assignable.
      *
@@ -27,6 +26,10 @@ class User extends Authenticatable
     ];
 
     public function projects(){
-        return $this->hasMany(Project::class);
+        return $this->hasMany(Project::class, 'client_id');
+    }
+
+    public function projectMembers(){
+        return $this->belongsToMany(Project::class, 'project_member');
     }
 }

@@ -34,17 +34,6 @@ class ProjectService
         $this->validator = $validator;
     }
 
-    public function show($id){
-        try{
-            return $this->repository->with(['client','owner'])->find($id);
-        } catch (\Exception $e){
-            return [
-                'error'=>true,
-                'message'=>$e->getMessage()
-            ];
-        }
-    }
-
     public function create(array $data){
         try{
             $this->validator->with($data)->passesOrFail();
@@ -57,10 +46,9 @@ class ProjectService
         }
     }
 
-    public function destroy($id){
+    public function show($id){
         try{
-            $this->repository->find($id)->delete() ? $response_array['status'] = 'success' : $response_array['status'] = 'error';
-            return json_encode($response_array);
+            return $this->repository->with(['client','owner'])->find($id);
         } catch (\Exception $e){
             return [
                 'error'=>true,
@@ -78,6 +66,77 @@ class ProjectService
                 $response_array['status'] = 'error';
             }
             return $response_array;
+        } catch (\Exception $e){
+            return [
+                'error'=>true,
+                'message'=>$e->getMessage()
+            ];
+        }
+    }
+
+    public function destroy($id){
+        try{
+            $this->repository->find($id)->delete() ? $response_array['status'] = 'success' : $response_array['status'] = 'error';
+            return json_encode($response_array);
+        } catch (\Exception $e){
+            return [
+                'error'=>true,
+                'message'=>$e->getMessage()
+            ];
+        }
+    }
+
+    public function tasks($id){
+        try{
+            return $this->repository->find($id)->projectTasks;
+        } catch (\Exception $e){
+            return [
+                'error'=>true,
+                'message'=>$e->getMessage()
+            ];
+        }
+    }
+
+    public function members($id){
+        try{
+            return $this->repository->find($id)->members;
+        } catch (\Exception $e){
+            return [
+                'error'=>true,
+                'message'=>$e->getMessage()
+            ];
+        }
+    }
+
+    public function addMember($id, $project_id){
+        try{
+            return $this->repository->find($id)->attach($project_id);
+        } catch (\Exception $e){
+            return [
+                'error'=>true,
+                'message'=>$e->getMessage()
+            ];
+        }
+    }
+
+    public function removeMember($id, $project_id){
+        try{
+            return $this->repository->find($id)->detach($project_id);
+        } catch (\Exception $e){
+            return [
+                'error'=>true,
+                'message'=>$e->getMessage()
+            ];
+        }
+    }
+
+    public function isMember($id, $project_id){
+        try{
+            $is_member = $this->repository->find($id)->projectMembers->find($project_id);
+            if ($is_member){
+                return true;
+            }
+            return false;
         } catch (\Exception $e){
             return [
                 'error'=>true,

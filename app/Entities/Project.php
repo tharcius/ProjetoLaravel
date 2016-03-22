@@ -19,7 +19,15 @@ class Project extends Model{
         return $this->belongsTo(Client::class);
     }
 
+    public function members(){
+        return $this->belongsToMany(User::class, 'project_member');
+    }
+
     public function owner(){
         return $this->belongsTo(User::class);
+    }
+
+    public function projectTasks(){
+        return $this->hasMany(ProjectTask::class);
     }
 }
